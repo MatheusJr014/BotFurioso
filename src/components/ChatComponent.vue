@@ -1,21 +1,17 @@
 <template>
     <div class="d-flex flex-column bg-black" style="height: 50rem;">
-        <!-- Chat Container -->
         <div class="flex-grow-1 d-flex flex-column container py-2">
             <div class="bg-dark rounded shadow border border-light border-opacity-25 flex-grow-1 d-flex flex-column overflow-hidden">
-                <!-- Chat Header -->
                 <div class="bg-black p-3 border-bottom border-light border-opacity-25">
                     <div class="d-flex align-items-center gap-2">
                         <div class="logo-container-sm">
-                            <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24"
-                                class="logo-image" />
+                            <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24" class="logo-image" />
                         </div>
                         <h2 class="text-white fw-bold mb-0">FURIA AI Assistant</h2>
                     </div>
                     <p class="text-secondary small mt-1">Pergunte sobre times, jogadores, eventos e mais</p>
                 </div>
 
-                <!-- Messages -->
                 <div class="flex-grow-1 overflow-auto p-3" ref="messageContainer" style="max-height: 600px;">
                     <div v-for="(message, index) in messages" :key="index" class="mb-3">
                         <div :class="['d-flex', 'gap-2', message.role === 'user' ? 'flex-row-reverse' : '']">
@@ -23,20 +19,18 @@
                                 style="width: 40px; height: 40px;">
                                 <span v-if="message.role === 'user'" class="text-white small">YOU</span>
                                 <div v-else class="logo-container-xs">
-                                    <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="30" height="30"
-                                        class="logo-image" />
+                                    <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="30" height="30" class="logo-image" />
                                 </div>
                             </div>
 
                             <div
                                 :class="['rounded p-3', 'mw-75', message.role === 'user' ? 'bg-secondary text-white' : 'bg-black border border-light border-opacity-25 text-white']">
-                                {{ message.content }}
+                                <div v-html="formatMessage(message.content)"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Input -->
                 <form @submit.prevent="handleSend" class="p-3 border-top border-light border-opacity-25 bg-black">
                     <div class="d-flex gap-2">
                         <input type="text" v-model="input" placeholder="Digite sua mensagem..."
@@ -54,7 +48,10 @@
         </div>
     </div>
 </template>
+
 <script>
+import { GoogleGenAI } from "@google/genai";
+
 export default {
     name: 'FuriaChat',
     data() {
@@ -63,16 +60,15 @@ export default {
             messages: [
                 {
                     role: 'assistant',
-                    content: 'Olá! Eu sou o assistente virtual da FURIA ESPORTS. Como posso ajudar você hoje?',
-                },
-            ]
+                    content: 'Olá! Eu sou o assistente virtual da FURIA ESPORTS. Como posso ajudar você hoje?'
+                }
+            ],
+            ai: null,
         }
     },
     methods: {
-        handleSend() {
+        async handleSend() {
             if (this.input.trim() === '') return;
-
-            // Add user message
             this.messages.push({
                 role: 'user',
                 content: this.input
@@ -81,23 +77,60 @@ export default {
             const userMessage = this.input;
             this.input = '';
 
-            // Scroll to bottom
             this.$nextTick(() => {
                 this.scrollToBottom();
             });
 
-            // Simulate AI response
-            setTimeout(() => {
-                this.messages.push({
-                    role: 'assistant',
-                    content: 'Obrigado por sua mensagem! Nossa equipe está trabalhando para implementar respostas inteligentes. Em breve responderei todas as suas perguntas sobre a FURIA ESPORTS!'
+            try {
+                if (!this.ai) {
+                    this.ai = new GoogleGenAI({ apiKey: "AIzaSyCPOkC2MmXXCJLlcZKd5xOeIgZzOwruF4o" });
+                }
+
+                const result = await this.ai.models.generateContent({
+                    model: "gemini-2.0-flash",  
+                    contents: [
+                        {
+                            role: "user",
+                            parts: [
+                                { text: `Você é o FURIA Bot, o assistente virtual oficial para os fãs da FURIA ESPORTS. 
+                                Seu papel é responder com entusiasmo e paixão sobre o time de CS:GO da FURIA.
+                                Sempre seja amigável, motivador e, se possível, inclua curiosidades, títulos ou fatos sobre o time.
+                                Evite respostas frias ou formais. Use emojis relacionados a esports, torcida e jogos.` },
+                                { text: userMessage }
+                            ]
+                        }
+                    ]
                 });
 
-                // Scroll to bottom again after response
+                const candidates = result?.candidates || result?.response?.candidates;
+                const text = candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui gerar uma resposta.";
+
+                this.messages.push({
+                    role: 'assistant',
+                    content: text
+                });
+
                 this.$nextTick(() => {
                     this.scrollToBottom();
                 });
-            }, 1000);
+
+            } catch (error) {
+                console.error(error);
+                this.messages.push({
+                    role: 'assistant',
+                    content: 'Oops, erro ao falar com o FURIABot!'
+                });
+
+                this.$nextTick(() => {
+                    this.scrollToBottom();
+                });
+            }
+        },
+        formatMessage(content) {
+            if (!content) return '';
+            let formatted = content.replace(/\*(.*?)\*/g, '<b>$1</b>');
+            formatted = formatted.replace(/\n/g, '<br>');
+            return formatted;
         },
         scrollToBottom() {
             if (this.$refs.messageContainer) {
@@ -110,4 +143,7 @@ export default {
     }
 }
 </script>
-<style></style>
+
+<style>
+/* Seu estilo está ok */
+</style>

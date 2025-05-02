@@ -11,13 +11,13 @@ const router = createRouter({
         {
             path: '/teste',
             name: 'testeFront',
-            component: ()=> import('@/views/HomeBot.vue')
+            component: ()=> import('@/views/HomePage.vue')
 
         },
         {
             path: '/teste2',
             name: 'teste2',
-            component: ()=> import('../components/BotFuria.vue')
+            component: ()=> import('../components/obsolet/BotFuria.vue')
         }
     ]
 })
