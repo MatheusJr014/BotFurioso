@@ -6,18 +6,18 @@ const router = createRouter({
         {
             path: '/',
             name: 'Home',
-            component: () => import('@/views/Home.vue')
+            component: () => import('@/views/HomeBot.vue')
         },
-        {
-            path: '/teste',
-            name: 'testeFront',
-            component: ()=> import('@/views/HomePage.vue')
+        // {
+        //     path: '/teste',
+        //     name: 'testeFront',
+        //     component: ()=> import('@/views/HomeBot.vue')
 
-        },
+        // },
         {
             path: '/teste2',
             name: 'teste2',
-            component: ()=> import('../components/obsolet/BotFuria.vue')
+            component: ()=> import('../views/Time.vue')
         }
     ]
 })
