@@ -8,16 +8,10 @@ const router = createRouter({
             name: 'Home',
             component: () => import('@/views/HomeBot.vue')
         },
-        // {
-        //     path: '/teste',
-        //     name: 'testeFront',
-        //     component: ()=> import('@/views/HomeBot.vue')
-
-        // },
         {
-            path: '/teste2',
-            name: 'teste2',
-            component: ()=> import('../views/Time.vue')
+            path: '/sobre',
+            name: 'sobre',
+            component: ()=> import('../views/Sobre.vue')
         }
     ]
 })

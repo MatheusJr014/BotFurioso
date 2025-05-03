@@ -5,7 +5,7 @@
                 <div class="bg-black p-3 border-bottom border-light border-opacity-25">
                     <div class="d-flex align-items-center gap-2">
                         <div class="logo-container-sm">
-                            <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24" class="logo-image" />
+                            <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24" class="logo-image" />
                         </div>
                         <h2 class="text-white fw-bold mb-0">FURIA AI Assistant</h2>
                     </div>
@@ -19,7 +19,7 @@
                                 style="width: 40px; height: 40px;">
                                 <span v-if="message.role === 'user'" class="text-white small">YOU</span>
                                 <div v-else class="logo-container-xs">
-                                    <img src="../assets/furia-esports-seeklogo.png" alt="FURIA" width="30" height="30" class="logo-image" />
+                                    <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="30" height="30" class="logo-image" />
                                 </div>
                             </div>
 

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import NavbarComponent from '../components/NavbarComponent.vue';
-import FooterComponent from '../components/FooterComponent.vue'
-import ChatComponent from '@/components/ChatComponent.vue';
+import NavbarComponent from '../components/Publico/NavbarComponent.vue';
+import FooterComponent from '../components/Publico/FooterComponent.vue'
+import ChatComponent from '@/components/BotFurioso/ChatComponent.vue';
 export default {
     components: {
         NavbarComponent,
