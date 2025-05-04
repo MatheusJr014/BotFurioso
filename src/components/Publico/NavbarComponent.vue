@@ -10,9 +10,6 @@
                 <router-link to="/" class="text-white fw-bold fs-4 mb-0 text-decoration-none">FURIA ESPORTS</router-link>
             </div>
             <div class="d-none d-md-flex align-items-center gap-3">
-                <router-link class="btn btn-outline-light border-0 text-white hover-effect">
-                    Equipes
-                </router-link>
                 <a href="https://draft5.gg/" class="btn btn-outline-light border-0 text-white hover-effect">Notícias</a>
                 <a href="https://www.furia.gg/" class="btn btn-outline-light border-0 text-white hover-effect">Loja</a>
                 <router-link to="/sobre" class="btn btn-outline-light border-0 text-white hover-effect">

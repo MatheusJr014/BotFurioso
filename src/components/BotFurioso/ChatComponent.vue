@@ -1,11 +1,13 @@
 <template>
     <div class="d-flex flex-column bg-black" style="height: 50rem;">
         <div class="flex-grow-1 d-flex flex-column container py-2">
-            <div class="bg-dark rounded shadow border border-light border-opacity-25 flex-grow-1 d-flex flex-column overflow-hidden">
+            <div
+                class="bg-dark rounded shadow border border-light border-opacity-25 flex-grow-1 d-flex flex-column overflow-hidden">
                 <div class="bg-black p-3 border-bottom border-light border-opacity-25">
                     <div class="d-flex align-items-center gap-2">
                         <div class="logo-container-sm">
-                            <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24" class="logo-image" />
+                            <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="24" height="24"
+                                class="logo-image" />
                         </div>
                         <h2 class="text-white fw-bold mb-0">FURIA AI Assistant</h2>
                     </div>
@@ -19,7 +21,8 @@
                                 style="width: 40px; height: 40px;">
                                 <span v-if="message.role === 'user'" class="text-white small">YOU</span>
                                 <div v-else class="logo-container-xs">
-                                    <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="30" height="30" class="logo-image" />
+                                    <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="30"
+                                        height="30" class="logo-image" />
                                 </div>
                             </div>
 
@@ -29,8 +32,21 @@
                             </div>
                         </div>
                     </div>
+                    <div v-if="isTyping" class="mb-3">
+                        <div class="d-flex gap-2">
+                            <div class="avatar rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <div class="logo-container-xs">
+                                    <img src="../../assets/furia-esports-seeklogo.png" alt="FURIA" width="30"
+                                        height="30" class="logo-image" />
+                                </div>
+                            </div>
+                            <div class="rounded p-3 mw-75 bg-black border border-light border-opacity-25 text-white">
+                                <span class="typing-dots">Digitando<span>.</span><span>.</span><span>.</span></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <form @submit.prevent="handleSend" class="p-3 border-top border-light border-opacity-25 bg-black">
                     <div class="d-flex gap-2">
                         <input type="text" v-model="input" placeholder="Digite sua mensagem..."
@@ -64,6 +80,7 @@ export default {
                 }
             ],
             ai: null,
+            isTyping: false,
         }
     },
     methods: {
@@ -85,15 +102,17 @@ export default {
                 if (!this.ai) {
                     this.ai = new GoogleGenAI({ apiKey: "AIzaSyCPOkC2MmXXCJLlcZKd5xOeIgZzOwruF4o" });
                 }
+                this.isTyping = true;
 
                 const result = await this.ai.models.generateContent({
-                    model: "gemini-2.0-flash",  
+                    model: "gemini-2.0-flash",
                     contents: [
                         {
                             role: "user",
                             parts: [
-                                { text: `Você é o FURIA Bot, o assistente virtual oficial para os fãs da FURIA ESPORTS. 
-                                Seu papel é responder com entusiasmo e paixão sobre o time de CS:GO da FURIA.
+                                {
+                                    text: `Você é o FURIA Bot, o assistente virtual oficial para os fãs da FURIA ESPORTS. 
+                                Seu papel é responder com entusiasmo e paixão sobre o time de CS (Counter Strike) da FURIA.
                                 Sempre seja amigável, motivador e, se possível, inclua curiosidades, títulos ou fatos sobre o time.
                                 Evite respostas frias ou formais. Use emojis relacionados a esports, torcida e jogos.` },
                                 { text: userMessage }
@@ -101,6 +120,8 @@ export default {
                         }
                     ]
                 });
+
+                this.isTyping = false;
 
                 const candidates = result?.candidates || result?.response?.candidates;
                 const text = candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, não consegui gerar uma resposta.";
@@ -116,6 +137,7 @@ export default {
 
             } catch (error) {
                 console.error(error);
+                this.isTyping = false;
                 this.messages.push({
                     role: 'assistant',
                     content: 'Oops, erro ao falar com o FURIABot!'
@@ -146,4 +168,24 @@ export default {
 
 <style>
 
+.typing-dots span {
+  opacity: 0;
+  animation: blink 1.4s infinite;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
 </style>
