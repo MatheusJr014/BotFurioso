@@ -50,13 +50,34 @@ Com ele, você pode:
 
 ---
 
-## ⚙️ Como Rodar Localmente 
+## ⚙️ Como Rodar o projeto  
 
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/furia-fan-chat.git
-cd furia-fan-chat
+git clone https://github.com/MatheusJr014/BotFurioso
+cd BotFurioso
 ``` 
 
+### Opção com Docker 
+
+
+```bash 
+
+
+
+```
+
+
+
+### Opção sem Docker
+
+
+```bash 
+cd BotFurioso
+
+npm install 
+
+npm run dev
+```
 
