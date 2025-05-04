@@ -1,29 +1,62 @@
-# BotFuria
+# 🦊🎮 BotFurioso - IA Bot
 
-This template should help get you started developing with Vue 3 in Vite.
+Bem-vindo ao **BotFurioso**, um projeto criado para todos os fãs da FURIA e apaixonados por **Counter-Strike 2**!  
+Aqui você pode **conversar diretamente com uma inteligência artificial**, se informar sobre o time e **se aventurar no universo do CS2** de forma divertida e interativa.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## ✨ Sobre o Projeto
 
-## Customize configuration
+O **BotFurioso** é um chatbot que utiliza **IA Generativa** para criar conversas dinâmicas e naturais com os fãs da FURIA.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Com ele, você pode:
+- Fazer perguntas sobre o time, os jogadores e o CS2.
+- Se divertir simulando conversas como se estivesse dentro do mundo dos esports.
+- Receber informações, dicas e curiosidades de forma natural.
 
-## Project Setup
+---
 
-```sh
-npm install
-```
+## 🚀 Tecnologias Utilizadas
 
-### Compile and Hot-Reload for Development
+- **Vue.js** – Framework front-end moderno para a interface do chat.
+- **Google Gemini API** – Para processamento de linguagem natural (IA generativa).
+- **Axios** – Para comunicação entre o front-end e a API da Gemini.
+- **Vite** – Ferramenta de build rápida para desenvolvimento Vue.js.
 
-```sh
-npm run dev
-```
+---
 
-### Compile and Minify for Production
+## 🧠 Como Funciona
 
-```sh
-npm run build
-```
+1. O usuário acessa a **Landing Page** e entra no chat.
+2. Digita perguntas ou mensagens para a IA.
+3. A aplicação envia a mensagem para a **API do Google Gemini**.
+4. A IA entende a intenção do usuário e gera uma resposta natural.
+5. A resposta é exibida no chat, criando uma experiência fluida e divertida.
+
+---
+
+## 📸 Demonstração
+
+![BotFurioso Deploy]([https://botfuriosodeploy.vercel.app/])
+
+---
+
+## 🔥 Funcionalidades
+
+- 💬 **Chat em Tempo Real** com a IA
+- 🎯 **Respostas Contextuais** sobre CS2 e FURIA
+- 🎮 **Experiência imersiva** para fãs de esports
+- 🦊 **Personalidade inspirada na FURIA**: respostas energéticas e vibrantes!
+
+---
+
+## ⚙️ Como Rodar Localmente 
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/furia-fan-chat.git
+cd furia-fan-chat
+``` 
+
+
