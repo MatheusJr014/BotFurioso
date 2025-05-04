@@ -37,7 +37,7 @@ Com ele, você pode:
 
 ## 📸 Demonstração
 
-![BotFurioso Deploy](https://botfuriosodeploy.vercel.app/)
+[BotFurioso Deploy](https://botfuriosodeploy.vercel.app/)
 
 ---
 
