@@ -26,6 +26,3 @@
 <script>
 
 </script>
-<style>
-
-</style>

@@ -3,7 +3,6 @@
 
     <div class="flex-grow-1 container py-4">
       <div class="bg-black rounded border border-secondary border-opacity-25 overflow-hidden">
-
         <div class="bg-black p-3 border-bottom border-secondary border-opacity-25">
           <div class="d-flex align-items-center gap-3">
             <div class="logo-container-sm">
@@ -14,7 +13,6 @@
           </div>
           <p class="text-secondary small mt-1">Conheça nossa história, missão e valores</p>
         </div>
-
         <div class="p-4 text-white">
           <section class="mb-5">
             <h3 class="border-bottom border-secondary pb-2 mb-3">Nossa História</h3>

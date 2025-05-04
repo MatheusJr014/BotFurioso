@@ -145,5 +145,5 @@ export default {
 </script>
 
 <style>
-/* Seu estilo está ok */
+
 </style>

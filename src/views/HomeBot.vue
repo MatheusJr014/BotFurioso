@@ -83,7 +83,7 @@ export default {
     max-height: 80%;
 }
 
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -101,15 +101,9 @@ export default {
     background: rgba(255, 255, 255, 0.5);
 }
 
-/* Button hover effect */
 .btn-light:hover {
     background-color: #f8f9fa;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Ensure Bootstrap is imported */
-/* In your main.js or index.js file, make sure to include:
-  import 'bootstrap/dist/css/bootstrap.css'
-  import 'bootstrap/dist/js/bootstrap.js'
-  */
 </style>
