@@ -37,7 +37,7 @@ Com ele, você pode:
 
 ## 📸 Demonstração
 
-![BotFurioso Deploy]([https://botfuriosodeploy.vercel.app/])
+![BotFurioso Deploy](https://botfuriosodeploy.vercel.app/)
 
 ---
 
@@ -59,18 +59,18 @@ git clone https://github.com/MatheusJr014/BotFurioso
 cd BotFurioso
 ``` 
 
-### Opção com Docker 
+### 🐳Opção com Docker 
 
+**A API Key está publica para facilitar o teste local, porém não é o correto para lançar o projeto. Deixei publico para não haver a necessidade de criar um .env**  
 
 ```bash 
-
-
+docker-compose up --build
 
 ```
 
 
 
-### Opção sem Docker
+### ⚙️Opção sem Docker
 
 
 ```bash 
@@ -80,4 +80,8 @@ npm install
 
 npm run dev
 ```
+---
 
+### 📢 Contato
+Desenvolvido com 💙 para os fãs da FURIA!
+Entre em contato: [matheusjuniorcontato@gmail.com]
